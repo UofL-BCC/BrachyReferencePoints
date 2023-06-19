@@ -1,0 +1,10 @@
+Q:\Physics Scripting\Projects\BrachyReferencePoints\obj\x64\Debug\BrachyReferencePoints.csproj.AssemblyReference.cache
+Q:\Physics Scripting\Projects\BrachyReferencePoints\obj\x64\Debug\BrachyReferencePoints.csproj.CoreCompileInputs.cache
+Q:\Physics Scripting\Projects\BrachyReferencePoints\obj\x64\Debug\CreateBrachyReferencePoints.1.1.esapi.dll
+Q:\Physics Scripting\Projects\BrachyReferencePoints\obj\x64\Debug\CreateBrachyReferencePoints.1.1.esapi.pdb
+Q:\Physics Scripting\Projects\BrachyReferencePoints1.1\obj\x64\Debug\BrachyReferencePoints.csproj.AssemblyReference.cache
+Q:\Physics Scripting\Projects\BrachyReferencePoints1.1\obj\x64\Debug\BrachyReferencePoints.csproj.CoreCompileInputs.cache
+Q:\Physics Scripting\plugins\CreateBrachyReferencePoints.2.4.esapi.dll
+Q:\Physics Scripting\plugins\CreateBrachyReferencePoints.2.4.esapi.pdb
+Q:\Physics Scripting\Projects\BrachyReferencePoints1.1\obj\x64\Debug\CreateBrachyReferencePoints.2.4.esapi.dll
+Q:\Physics Scripting\Projects\BrachyReferencePoints1.1\obj\x64\Debug\CreateBrachyReferencePoints.2.4.esapi.pdb
