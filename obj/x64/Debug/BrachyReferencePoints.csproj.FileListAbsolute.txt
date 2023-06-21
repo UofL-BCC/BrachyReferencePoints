@@ -8,3 +8,9 @@ Q:\Physics Scripting\plugins\CreateBrachyReferencePoints.2.4.esapi.dll
 Q:\Physics Scripting\plugins\CreateBrachyReferencePoints.2.4.esapi.pdb
 Q:\Physics Scripting\Projects\BrachyReferencePoints1.1\obj\x64\Debug\CreateBrachyReferencePoints.2.4.esapi.dll
 Q:\Physics Scripting\Projects\BrachyReferencePoints1.1\obj\x64\Debug\CreateBrachyReferencePoints.2.4.esapi.pdb
+Q:\Physics Scripting\BrachyReferencePoints\obj\x64\Debug\BrachyReferencePoints.csproj.AssemblyReference.cache
+Q:\Physics Scripting\BrachyReferencePoints\obj\x64\Debug\BrachyReferencePoints.csproj.CoreCompileInputs.cache
+Q:\plugins\CreateBrachyReferencePoints.1.2.esapi.dll
+Q:\plugins\CreateBrachyReferencePoints.1.2.esapi.pdb
+Q:\Physics Scripting\BrachyReferencePoints\obj\x64\Debug\CreateBrachyReferencePoints.1.2.esapi.dll
+Q:\Physics Scripting\BrachyReferencePoints\obj\x64\Debug\CreateBrachyReferencePoints.1.2.esapi.pdb

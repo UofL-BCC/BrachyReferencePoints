@@ -32,6 +32,7 @@ namespace VMS.TPS
 
             BrachyPlanSetup brachyPlan = context.BrachyPlanSetup;
 
+
             Image planImage = brachyPlan.StructureSet.Image;
 
             var caths = brachyPlan.Catheters;
@@ -67,7 +68,6 @@ namespace VMS.TPS
 
             var TipToLastPosUnitVect = LastSourcePosition.Translation - Shape[0];
             TipToLastPosUnitVect.ScaleToUnitLength();
-
 
 
 
@@ -115,12 +115,13 @@ namespace VMS.TPS
             List<ReferencePoint> appendListRefPointA1 = new List<ReferencePoint>();
             List<ReferencePoint> appendListRefPointA3 = new List<ReferencePoint>();
 
+            string DisplayMessage = "";
+            string NoFindDisplayMessage = "";
 
-         
+
             if (Cylinder !=  null)
             {
 
-                string DisplayMessage = "";
 
                 if (brachyPlan.ReferencePoints.Where(c => c.Id.ToLower() == "a2").Any())
                 {
@@ -170,10 +171,12 @@ namespace VMS.TPS
 
 
 
-
-
                     DisplayMessage += string.Format("Reference Point {0} found and location changed. \n", A2.Id);
 
+                }
+                else
+                {
+                    NoFindDisplayMessage += "Reference Point A2 not found.\n";
                 }
 
                 if (brachyPlan.ReferencePoints.Where(c => c.Id.ToLower() == "a1").Any())
@@ -223,7 +226,10 @@ namespace VMS.TPS
                     }
 
 
-
+                }
+                else
+                {
+                    NoFindDisplayMessage += "Reference Point A1 not found.\n";
                 }
 
                 if (brachyPlan.ReferencePoints.Where(c => c.Id.ToLower() == "a3").Any() & brachyPlan.ReferencePoints.Where(c => c.Id.ToLower() == "a1").Any())
@@ -253,16 +259,12 @@ namespace VMS.TPS
 
 
                 }
-
-                if (DisplayMessage.Any())
-                {
-                    MessageBox.Show(DisplayMessage);
-
-                }
                 else
                 {
-                    MessageBox.Show("Reference Points named A1, A2, or A3 were not found.");
+                    NoFindDisplayMessage += "Reference Point A3 not found.\n";
                 }
+
+                
 
             }
             else
@@ -275,8 +277,6 @@ namespace VMS.TPS
                 double CylinderDiameter = double.Parse(CylinderDiameterString);
 
 
-
-                string DisplayMessage = "";
 
                 if (brachyPlan.ReferencePoints.Where(c => c.Id.ToLower() == "a2").Any())
                 {
@@ -296,6 +296,10 @@ namespace VMS.TPS
 
                     DisplayMessage += string.Format("Reference Point {0} found and location changed. \n", A2.Id);
 
+                }
+                else
+                {
+                    NoFindDisplayMessage += "Reference Point A2 not found.\n";
                 }
 
                 if (brachyPlan.ReferencePoints.Where(c => c.Id.ToLower() == "a1").Any())
@@ -318,6 +322,10 @@ namespace VMS.TPS
 
                     DisplayMessage += string.Format("Reference Point {0} found and location changed. \n", A1.Id);
 
+                }
+                else
+                {
+                    NoFindDisplayMessage += "Reference Point A1 not found.\n";
                 }
 
                 if (brachyPlan.ReferencePoints.Where(c => c.Id.ToLower() == "a3").Any() & brachyPlan.ReferencePoints.Where(c => c.Id.ToLower() == "a1").Any())
@@ -345,66 +353,91 @@ namespace VMS.TPS
 
 
                 }
-
-
-                if (DisplayMessage.Any())
-                {
-                    MessageBox.Show(DisplayMessage);
-
-                }
                 else
                 {
-                    MessageBox.Show("Reference Points named A1, A2, or A3 were not found.");
+                    NoFindDisplayMessage += "Reference Point A3 not found.\n";
                 }
-
-
-
-
 
 
             }
 
-            //hi Brian
+    
             ReferencePoint a2 = appendListRefPointA2.FirstOrDefault();
             ReferencePoint a1 = appendListRefPointA1.FirstOrDefault();
             ReferencePoint a3 = appendListRefPointA3.FirstOrDefault();
 
-
-            VVector a2Coords = a2.GetReferencePointLocation(brachyPlan);
-            VVector a1Coords = a1.GetReferencePointLocation(planImage);
-            VVector a3Coords = a3.GetReferencePointLocation(planImage);
-      
-
-            VVector HalfEndToBeginningVect = EndToBeginningVect * (ActiveLength / 2);
-
-            string DisplayMessage1 = "";
-
-            VVector a4Coords = a2Coords - HalfEndToBeginningVect;
-            ReferencePoint A4 = brachyPlan.ReferencePoints.Where(c => c.Id.ToLower() == "a4").First();
-            A4.ChangeLocation(planImage, a4Coords.x, a4Coords.y, a4Coords.z, stringBuilder);
-
-            DisplayMessage1 += string.Format("Reference Point {0} found and location changed. \n", A4.Id);
-
-
-            VVector a5Coords = a2Coords - HalfEndToBeginningVect/2;
-            ReferencePoint A5 = brachyPlan.ReferencePoints.Where(c => c.Id.ToLower() == "a5").First();
-            A5.ChangeLocation(planImage, a5Coords.x, a5Coords.y, a5Coords.z, stringBuilder);
-
-            DisplayMessage1 += string.Format("Reference Point {0} found and location changed. \n", A5.Id);
-
-
-            VVector a6Coords = a2Coords + HalfEndToBeginningVect / 2;
-            ReferencePoint A6 = brachyPlan.ReferencePoints.Where(c => c.Id.ToLower() == "a6").First();
-            A6.ChangeLocation(planImage, a6Coords.x, a6Coords.y, a6Coords.z, stringBuilder);
-
-            DisplayMessage1 += string.Format("Reference Point {0} found and location changed. \n", A6.Id);
-
-
-
-
-            if (DisplayMessage1.Any() == false)
+            if (a2 != null)
             {
-                MessageBox.Show("Reference Points named A4, A5, or A6 were not found.");
+                VVector a2Coords = a2.GetReferencePointLocation(brachyPlan);
+                VVector HalfEndToBeginningVect = EndToBeginningVect * (ActiveLength / 2);
+
+                VVector a4Coords = a2Coords - HalfEndToBeginningVect;
+
+                if (brachyPlan.ReferencePoints.Where(c => c.Id.ToLower() == "a4").Any())
+                {
+                    ReferencePoint A4 = brachyPlan.ReferencePoints.Where(c => c.Id.ToLower() == "a4").First();
+                    A4.ChangeLocation(planImage, a4Coords.x, a4Coords.y, a4Coords.z, stringBuilder);
+
+                    DisplayMessage += string.Format("Reference Point {0} found and location changed. \n", A4.Id);
+
+                }
+                else
+                {
+                    NoFindDisplayMessage += "Reference Point A4 not found.\n";
+
+
+                }
+
+                if (brachyPlan.ReferencePoints.Where(c => c.Id.ToLower() == "a5").Any())
+                {
+                    VVector a5Coords = a2Coords - HalfEndToBeginningVect / 2;
+                    ReferencePoint A5 = brachyPlan.ReferencePoints.Where(c => c.Id.ToLower() == "a5").First();
+                    A5.ChangeLocation(planImage, a5Coords.x, a5Coords.y, a5Coords.z, stringBuilder);
+
+                    DisplayMessage += string.Format("Reference Point {0} found and location changed. \n", A5.Id);
+
+                }
+                else
+                {
+                    NoFindDisplayMessage += "Reference Point A5 not found.\n";
+
+                }
+
+                if (brachyPlan.ReferencePoints.Where(c => c.Id.ToLower() == "a6").Any())
+                {
+                    VVector a6Coords = a2Coords + HalfEndToBeginningVect / 2;
+                    ReferencePoint A6 = brachyPlan.ReferencePoints.Where(c => c.Id.ToLower() == "a6").First();
+                    A6.ChangeLocation(planImage, a6Coords.x, a6Coords.y, a6Coords.z, stringBuilder);
+
+                    DisplayMessage += string.Format("Reference Point {0} found and location changed. \n", A6.Id);
+
+                }
+                else
+                {
+                    NoFindDisplayMessage += "Reference Point A6 not found.\n";
+
+                }
+
+
+            }
+            else
+            {
+                NoFindDisplayMessage += "A4,A5, and A6 cannot be determined because A2 was not found.\n";
+            }
+
+            //dont need these right now
+            //VVector a1Coords = a1.GetReferencePointLocation(planImage);
+            //VVector a3Coords = a3.GetReferencePointLocation(planImage);
+
+
+
+            if (NoFindDisplayMessage.Any() && DisplayMessage.Any())
+            {
+                MessageBox.Show(DisplayMessage + "\n" +NoFindDisplayMessage);
+            }
+            else if(DisplayMessage.Any())
+            {
+                MessageBox.Show(DisplayMessage);
             }
 
             
